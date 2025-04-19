@@ -33,5 +33,5 @@ pip install -r requirements.txt
 ### 3. Avvia l'app
 
 ```bash
-streamlit run app.py
+streamlit run ./src/app.py
 ```
