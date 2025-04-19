@@ -32,5 +32,8 @@ if st.session_state.get('genera', True):
     tel2 = get_fastest_lap_telemetry(driver_2, session)
 
     fig = plot_speed_comparison(tel1, tel2, driver_1, driver_2, gp, year, session_type, tema)
-    st.markdown("### Confronto velocità sul giro")
-    st.pyplot(fig)
+
+    col1, col2, col3 = st.columns([1, 6, 1])    # margine sinistro, centrale, destro
+    with col2:
+        st.markdown("### Confronto velocità sul giro")
+        st.plotly_chart(fig, use_container_width=True)
