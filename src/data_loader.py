@@ -1,6 +1,11 @@
 import fastf1
 import streamlit as st
 
+@st.cache_data
+def get_grand_prix_list(year):
+    schedule = fastf1.get_event_schedule(year)
+    return schedule['EventName'].tolist()
+
 @st.cache_data(show_spinner="Caricamento sessione...")
 def carica_sessione(year, gp, session_type):
     session = fastf1.get_session(year, gp, session_type)

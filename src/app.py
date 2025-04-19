@@ -1,8 +1,7 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 from fastf1.plotting import setup_mpl
 
-from data_loader import carica_sessione, get_fastest_lap_telemetry
+from data_loader import get_grand_prix_list, carica_sessione, get_fastest_lap_telemetry
 from plot import plot_speed_comparison
 
 setup_mpl(color_scheme='fastf1')
@@ -13,12 +12,14 @@ st.title("\U0001F3C1 F1 Telemetry Dashboard")
 with st.sidebar:
     st.header("Parametri")
     year = st.sidebar.selectbox("Selezione l'anno", list(range(2018, 2024))[::-1])
-    gp = st.sidebar.selectbox("Gran Premio", ["Monza", "Spa", "Silverstone", "Bahrain"])
+    gp_list = get_grand_prix_list(year)
+    gp = st.sidebar.selectbox("Gran Premio", gp_list)
     session_type = st.sidebar.selectbox("Sessione", ["FP1", "FP2", "FP3", "Q", "R"])
     tema = st.radio("Tema grafico", ["Chiaro", "Scuro"], index=1)
 
     # === Caricamento sessione ===
-    session = carica_sessione(year, gp, session_type)
+    round_number = gp_list.index(gp) + 1
+    session = carica_sessione(year, round_number, session_type)
     piloti_disponibili = session.laps['Driver'].unique().tolist()
     driver_1 = st.sidebar.selectbox("Primo pilota", piloti_disponibili, index = 0)
     driver_2 = st.sidebar.selectbox("Secondo pilota", piloti_disponibili, index = 1)
