@@ -46,7 +46,7 @@ def plot_telemetry_dashboard(tel1, tel2, driver_1, driver_2, gp, year, session_t
     parametri = [
         ("Speed", "Speed (km/h)", False, None),
         ("Throttle", "Throttle (%)", False, None),
-        ("Brake", "Brake (on/off)", True, [-0.1, 1.1]),
+        ("Brake", "Brake (on/off)", False, [-0.1, 1.1]),
     ]
 
     fig=make_subplots(
