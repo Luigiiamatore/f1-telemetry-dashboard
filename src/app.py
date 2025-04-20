@@ -2,7 +2,7 @@ import streamlit as st
 from fastf1.plotting import setup_mpl
 
 from data_loader import get_grand_prix_list, carica_sessione, get_fastest_lap_telemetry
-from plot import plot_speed_comparison, plot_throttle_comparison, plot_brake_comparison
+from plot import plot_telemetry_dashboard
 
 setup_mpl(color_scheme='fastf1')
 st.set_page_config(page_title="F1 Telemetry Dashboard", layout="wide")
@@ -32,13 +32,9 @@ if st.session_state.get('genera', True):
     tel1 = get_fastest_lap_telemetry(driver_1, session)
     tel2 = get_fastest_lap_telemetry(driver_2, session)
 
-    fig_speed = plot_speed_comparison(tel1, tel2, driver_1, driver_2, gp, year, session_type, tema)
-    fig_throttle = plot_throttle_comparison(tel1, tel2, driver_1, driver_2, tema)
-    fig_brake = plot_brake_comparison(tel1, tel2, driver_1, driver_2, tema)
+    fig = plot_telemetry_dashboard(tel1, tel2, driver_1, driver_2, gp, year, session_type, tema)
 
     col1, col2, col3 = st.columns([1, 6, 1])    # margine sinistro, centrale, destro
     with col2:
-        st.markdown(f"### {driver_1} vs {driver_2} - {gp} {year} ({session_type})")
-        st.plotly_chart(fig_speed, use_container_width=True)
-        st.plotly_chart(fig_throttle, use_container_width=True)
-        st.plotly_chart(fig_brake, use_container_width=True)
+        #st.markdown(f"### {driver_1} vs {driver_2} - {gp} {year} ({session_type})")
+        st.plotly_chart(fig, use_container_width=True)
