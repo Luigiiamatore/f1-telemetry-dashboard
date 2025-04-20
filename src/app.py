@@ -5,7 +5,11 @@ from data_loader import get_grand_prix_list, carica_sessione, get_fastest_lap_te
 from plot import plot_telemetry_dashboard
 
 setup_mpl(color_scheme='fastf1')
-st.set_page_config(page_title="F1 Telemetry Dashboard", layout="wide")
+st.set_page_config(
+    page_title="F1 Telemetry Dashboard", 
+    page_icon="🏎️",
+    layout="wide"
+)
 st.title("\U0001F3C1 F1 Telemetry Dashboard")
 
 # === Sidebar per selezione ===
