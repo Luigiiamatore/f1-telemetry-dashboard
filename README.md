@@ -2,18 +2,23 @@
 
 Un'app interattiva per confrontare la telemetria di due piloti di Formula 1 sul giro più veloce, basata sui dati ufficiali forniti da [FastF1](https://theoehrly.github.io/Fast-F1/).
 
-## 📸 Screenshot
+## 📸 Anteprima
 
-![Screenshot della dashboard](/images/screenshot-dashboard.png)
+![Screenshot della Dashboard](images/screenshot-dashboard.png)
 
 ## ⚙️ Funzionalità
 
-- Selezione di anno, circuito e sessione (prove libere, qualifiche, gara)
-- Scelta di due piloti da confrontare
-- Grafico interattivo della velocità sul giro più veloce
-- Visualizzazione della distanza percorsa e confronto diretto tra linee di gara
+- Selezione anno, circuito e sessione (prove libere, qualifiche, gara)
+- Scelta dinamica dei piloti disponibili
+- Grafici interattivi sincronizzati:
+  - Velocità
+  - Throttle (acceleratore)
+  - Brake (frenata)
+- Griglia su asse X (distanza) per migliorare il confronto
+- Tema chiaro/scuro selezionabile
+- Responsive e usabile da desktop e mobile
 
-## 🚀 Come eseguirlo
+## 🚀 Come eseguirlo localmente
 
 ### 1. Clona il progetto
 
@@ -24,7 +29,7 @@ cd f1-telemetry-dashboard
 
 ### 2. Installa le dipendenze
 
-Consigliato: crea un virtual environment prima.
+Si consiglia l'uso di un virtual environment.
 
 ```bash
 pip install -r requirements.txt
