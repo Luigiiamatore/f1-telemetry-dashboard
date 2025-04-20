@@ -4,19 +4,19 @@ Un'app interattiva per confrontare la telemetria di due piloti di Formula 1 sul 
 
 ## 📸 Anteprima
 
-![Screenshot della Dashboard](images/screenshot-dashboard.png)
+![Screenshot Dashboard](images/screenshot-dashboard.png)
 
 ## ⚙️ Funzionalità
 
-- Selezione anno, circuito e sessione (prove libere, qualifiche, gara)
-- Scelta dinamica dei piloti disponibili
-- Grafici interattivi sincronizzati:
+- ✅ Selezione anno, circuito e sessione (prove libere, qualifiche, gara)
+- ✅ Scelta dinamica dei piloti disponibili
+- ✅ Grafici interattivi sincronizzati:
   - Velocità
   - Throttle (acceleratore)
   - Brake (frenata)
-- Griglia su asse X (distanza) per migliorare il confronto
-- Tema chiaro/scuro selezionabile
-- Responsive e usabile da desktop e mobile
+- ✅ Griglia sull’asse X per migliorare la leggibilità
+- ✅ Tema chiaro/scuro selezionabile
+- ✅ Layout responsive e leggibile anche su schermi più piccoli
 
 ## 🚀 Come eseguirlo localmente
 
@@ -40,3 +40,13 @@ pip install -r requirements.txt
 ```bash
 streamlit run ./src/app.py
 ```
+
+## ☁️ Deploy online
+
+Presto disponibile su [Streamlit Cloud](https://streamlit.io/cloud) — sarà sufficiente un link pubblico per provarlo!
+
+## 🧠 Basato su
+
+- [FastF1](https://theoehrly.github.io/Fast-F1/)
+- [Streamlit](https://streamlit.io/)
+- [Plotly](https://plotly.com/python/)
