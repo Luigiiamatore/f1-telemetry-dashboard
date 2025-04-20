@@ -1,6 +1,6 @@
 # 🏎️ F1 Telemetry Dashboard
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge.svg)](https://f1-telemetry-dashboard.streamlit.app/)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live%20App-ff4b4b?logo=streamlit&logoColor=white)](https://f1-telemetry-dashboard.streamlit.app/)
 
 Un'app interattiva per confrontare la telemetria di due piloti di Formula 1 sul giro più veloce, basata sui dati ufficiali forniti da [FastF1](https://theoehrly.github.io/Fast-F1/).
 
