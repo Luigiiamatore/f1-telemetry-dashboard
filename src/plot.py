@@ -1,8 +1,10 @@
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-def plot_parameter(tel1, tel2, parameter, driver_1, driver_2, tema="Scuro", dash=False, title=None, y_title=None, y_range=None):
-    theme = "plotly_dark" if tema == "Scuro" else "plotly_white"
+COLOR_1 = "#1f77b4"  # blu
+COLOR_2 = "#d62728"  # rosso
+
+def plot_parameter(tel1, tel2, parameter, driver_1, driver_2, dash=False, title=None, y_title=None, y_range=None):
     tel1 = tel1.copy()
     tel2 = tel2.copy()
 
@@ -14,18 +16,17 @@ def plot_parameter(tel1, tel2, parameter, driver_1, driver_2, tema="Scuro", dash
     fig.add_trace(go.Scatter(
         x=tel1["Distance"],
         y=tel1[parameter],
-        name=f"{driver_1} - {parameter}",
-        line=dict(dash="dot") if dash else None
+        name=f"{driver_1}",
+        line=dict(color=COLOR_1, dash="dot" if dash else None)
     ))
     fig.add_trace(go.Scatter(
         x=tel2["Distance"],
         y=tel2[parameter],
-        name=f"{driver_2} - {parameter}",
-        line=dict(dash="dot") if dash else None
+        name=f"{driver_2}",
+        line=dict(color=COLOR_2, dash="dot" if dash else None)
     ))
 
     fig.update_layout(
-        template=theme,
         title=title or f"{parameter} comparison",
         yaxis_title=y_title or parameter,
         height=500
@@ -35,9 +36,7 @@ def plot_parameter(tel1, tel2, parameter, driver_1, driver_2, tema="Scuro", dash
 
     return fig
 
-def plot_telemetry_dashboard(tel1, tel2, driver_1, driver_2, gp, year, session_type, tema="Scuro"):
-    theme = "plotly_dark" if tema == "Scuro" else "plotly_white"
-
+def plot_telemetry_dashboard(tel1, tel2, driver_1, driver_2, gp, year, session_type):
     tel1 = tel1.copy()
     tel2 = tel2.copy()
     tel1["Brake"] = tel1["Brake"].astype(int)
@@ -58,8 +57,12 @@ def plot_telemetry_dashboard(tel1, tel2, driver_1, driver_2, gp, year, session_t
 
     for i, (param, label, dash, yrange) in enumerate(parametri):
         row = i + 1
-        for trace in plot_parameter(tel1, tel2, param, driver_1, driver_2, tema, dash=dash).data:
+        
+        showlegend = (i == 0)
+        for j, trace in enumerate(plot_parameter(tel1, tel2, param, driver_1, driver_2, dash=dash).data):
+            trace.showlegend = showlegend
             fig.add_trace(trace, row=row, col=1)
+
         
         fig.update_yaxes(title_text=label, row=row, col=1)
         fig.update_xaxes(showgrid=True, nticks=20, row=row, col=1)
@@ -71,7 +74,6 @@ def plot_telemetry_dashboard(tel1, tel2, driver_1, driver_2, gp, year, session_t
 
     fig.update_layout(
         height=300 * len(parametri),
-        template=theme,
         title=f"{driver_1} vs {driver_2} - {gp} {year} ({session_type})",
         legend_title="Parameters"
     )
